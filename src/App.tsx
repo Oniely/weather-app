@@ -165,14 +165,14 @@ const App: React.FC = () => {
     };
 
     return (
-        <Container className="h-screen w-full mx-auto px-4 py-4 relative">
+        <Container className="h-screen w-full mx-auto px-2 py-2 md:px-4 md:py-4 relative">
             <Row className="flex flex-col-reverse md:flex-row md:h-full h-fit w-full rounded-3xl bg-[#f5f5f5]">
                 <Col className="w-full">
                     <SearchPlaces onSearchChange={handleChange} />
                     <Forecast data={forecastData} />
                 </Col>
 
-                <Col className="w-[100%] md:w-[43rem] h-full bg-[#1a1a52] md:rounded-e-3xl md:rounded-s-none rounded-ss-3xl rounded-se-3xl text-white">
+                <Col className="w-[100%] md:w-[42rem] h-full bg-[#1a1a52] md:rounded-e-3xl md:rounded-s-none rounded-ss-3xl rounded-se-3xl text-white">
                     <Weather data={weatherData} />
                 </Col>
             </Row>

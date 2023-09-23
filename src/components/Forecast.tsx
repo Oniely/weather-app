@@ -11,26 +11,26 @@ export const Forecast: React.FC<ForecastProps> = ({ data }) => {
 
     return (
         <>
-            <div className="w-full px-4 md:px-12 pt-7 flex flex-col items-start justify-start gap-7 mb-6">
+            <div className="w-full px-4 md:px-12 pt-7 flex flex-col items-start justify-start gap-6 mb-6">
                 {data?.day1 &&
                     data?.day2 &&
                     data?.day3 &&
                     data?.day4 &&
                     data?.day5 && (
-                        <div className="w-full flex items-center justify-between pr-12 gap-3">
-                            <h1 className="font-semibold text-[0.9rem] md:text-[16px]">
+                        <div className="w-full flex items-center justify-between px-4 md:pr-14 gap-3">
+                            <h1 className="font-semibold text-[0.8rem] md:text-[16px]">
                                 Week
                             </h1>
 
-                            <h1 className="font-semibold text-[0.9rem] md:text-[16px]">
+                            <h1 className="font-semibold text-[0.8rem] md:text-[16px]">
                                 Humidity
                             </h1>
 
-                            <h1 className="font-semibold text-[0.9rem] md:text-[16px]">
+                            <h1 className="font-semibold text-[0.8rem] md:text-[16px]">
                                 Weather
                             </h1>
 
-                            <h1 className="font-semibold relative text-[0.9rem] md:text-[16px]">
+                            <h1 className="font-semibold relative text-[0.8rem] md:text-[16px]">
                                 Temperature
                                 <span className="font-sans text-xs align-text-top absolute top-[-8px]">
                                     &#8451;
@@ -39,20 +39,21 @@ export const Forecast: React.FC<ForecastProps> = ({ data }) => {
                         </div>
                     )}
 
-                <div className="grid grid-cols-5 w-full gap-6 md:gap-0">
-                    <div className="text-sm md:text-lg flex flex-col gap-[6px]  justify-between items-start font-medium shrink-0">
+                <div className="grid grid-cols-5 w-full gap-2 md:gap-0">
+                    <div className="text-[0.8rem] md:text-lg flex flex-col gap-[6px]  justify-between items-start font-medium shrink-0">
                         <p>{data?.day1.date}</p>
                         <p>{data?.day2.date}</p>
                         <p>{data?.day3.date}</p>
                         <p>{data?.day4.date}</p>
                         <p>{data?.day5.date}</p>
                     </div>
+
                     {data?.day1.humidity &&
                     data?.day2.humidity &&
                     data?.day3.humidity &&
                     data?.day4.humidity &&
                     data?.day5.humidity ? (
-                        <div className="text-sm md:text-lg flex flex-col gap-[6px] justify-between items-start">
+                        <div className="text-[0.85rem] md:text-lg flex flex-col gap-[6px] justify-between items-start">
                             <div className="flex gap-1 items-center">
                                 <img
                                     src={humidityIcon}
@@ -102,7 +103,7 @@ export const Forecast: React.FC<ForecastProps> = ({ data }) => {
                     data?.day3.icon &&
                     data?.day4.icon &&
                     data?.day5.icon ? (
-                        <div className="text-lg flex flex-col gap-[6px] justify-between items-start">
+                        <div className="text-[0.85rem] md:text-lg flex flex-col gap-[6px] justify-between items-start">
                             <div className="flex items-center gap-1">
                                 <img
                                     src={`http://openweathermap.org/img/w/${data.day1.icon}.png`}
@@ -110,7 +111,7 @@ export const Forecast: React.FC<ForecastProps> = ({ data }) => {
                                     className="h-7 lg:h-10 lg:w-10 object-contain shadow-inner rounded-full"
                                     title={data.day1.description}
                                 />
-                                <span className="text-sm md:text-lg">
+                                <span className="text-[0.85rem] md:text-lg">
                                     <span className="hidden md:inline">- </span>
                                     {`${data.day1.mainDesc}`}
                                 </span>
@@ -123,7 +124,7 @@ export const Forecast: React.FC<ForecastProps> = ({ data }) => {
                                     className="h-7 lg:h-10 lg:w-10 object-contain shadow-inner rounded-full"
                                     title={data.day2.description}
                                 />
-                                <span className="text-sm md:text-lg">
+                                <span className="text-[0.85rem] md:text-lg">
                                     <span className="hidden md:inline">- </span>
                                     {`${data.day2.mainDesc}`}
                                 </span>
@@ -135,7 +136,7 @@ export const Forecast: React.FC<ForecastProps> = ({ data }) => {
                                     className="h-7 lg:h-10 lg:w-10 object-contain shadow-inner rounded-full"
                                     title={data.day3.description}
                                 />
-                                <span className="text-sm md:text-lg">
+                                <span className="text-[0.85rem] md:text-lg">
                                     <span className="hidden md:inline">- </span>
                                     {`${data.day3.mainDesc}`}
                                 </span>
@@ -147,7 +148,7 @@ export const Forecast: React.FC<ForecastProps> = ({ data }) => {
                                     className="h-7 lg:h-10 lg:w-10 object-contain shadow-inner rounded-full"
                                     title={data.day4.description}
                                 />
-                                <span className="text-sm md:text-lg">
+                                <span className="text-[0.85rem] md:text-lg">
                                     <span className="hidden md:inline">- </span>
                                     {`${data.day4.mainDesc}`}
                                 </span>
@@ -159,7 +160,7 @@ export const Forecast: React.FC<ForecastProps> = ({ data }) => {
                                     className="h-7 lg:h-10 lg:w-10 object-contain shadow-inner rounded-full"
                                     title={data.day5.description}
                                 />
-                                <span className="text-sm md:text-lg">
+                                <span className="text-[0.85rem] md:text-lg">
                                     <span className="hidden md:inline">- </span>
                                     {`${data.day5.mainDesc}`}
                                 </span>
@@ -173,7 +174,7 @@ export const Forecast: React.FC<ForecastProps> = ({ data }) => {
                         data?.day3 &&
                         data?.day4 &&
                         data?.day5 && (
-                            <div className="text-sm md:text-lg flex flex-col gap-[6px] justify-between items-center col-span-2">
+                            <div className="text-[0.85rem] md:text-lg flex flex-col gap-[6px] justify-between items-center col-span-2">
                                 <div className="flex items-center w-full justify-center px-3">
                                     <div className="flex items-center gap-3">
                                         <div className="relative m-2 text-[#b7bfc0]">
