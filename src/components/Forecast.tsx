@@ -11,7 +11,7 @@ export const Forecast: React.FC<ForecastProps> = ({ data }) => {
 
     return (
         <>
-            <div className="w-full px-12 pt-7 flex flex-col items-start justify-start gap-7 mb-6">
+            <div className="w-full px-4 md:px-12 pt-7 flex flex-col items-start justify-start gap-7 mb-6">
                 {data?.day1 &&
                     data?.day2 &&
                     data?.day3 &&
