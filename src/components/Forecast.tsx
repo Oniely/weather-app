@@ -1,23 +1,38 @@
 import { ForecastDataProps } from "../App";
 import humidityIcon from "./img/water.png";
+import ReactApexChart from "react-apexcharts";
 
 interface ForecastProps {
     data: ForecastDataProps | null;
 }
 
 export const Forecast: React.FC<ForecastProps> = ({ data }) => {
-
-    
+    const chartData = {
+        options: {
+            chart: {
+                id: "line",
+            },
+            xaxis: {
+                categories: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5"],
+            },
+        },
+        series: [
+            {
+                name: "Temperature",
+                data: [25, 26, 27, 28, 29],
+            },
+        ],
+    };
 
     return (
         <>
-            <div className="w-full px-4 md:px-12 pt-7 flex flex-col items-start justify-start gap-6 mb-6">
+            <div className="w-full px-4 md:px-12 pt-7 flex flex-col items-start justify-start gap-5 mb-6 md:mb-2">
                 {data?.day1 &&
                     data?.day2 &&
                     data?.day3 &&
                     data?.day4 &&
                     data?.day5 && (
-                        <div className="w-full flex items-center justify-between px-4 md:pr-14 gap-3">
+                        <div className="w-full flex items-center justify-between px-5 md:pr-14 gap-3">
                             <h1 className="font-semibold text-[0.8rem] md:text-[16px]">
                                 Week
                             </h1>
@@ -400,6 +415,9 @@ export const Forecast: React.FC<ForecastProps> = ({ data }) => {
                             </div>
                         )}
                 </div>
+            </div>
+            <div className="w-full px-4 md:px-12 text-lg hidden md:block">
+                <ReactApexChart options={chartData.options} series={chartData.series} type="line" height={200} width={700} />
             </div>
         </>
     );

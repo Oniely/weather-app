@@ -167,7 +167,7 @@ const App: React.FC = () => {
     return (
         <Container className="h-screen w-full mx-auto px-2 py-2 md:px-4 md:py-4 relative">
             <Row className="flex flex-col-reverse md:flex-row md:h-full h-fit w-full rounded-3xl bg-[#f5f5f5]">
-                <Col className="w-full">
+                <Col className="w-full px-4">
                     <SearchPlaces onSearchChange={handleChange} />
                     <Forecast data={forecastData} />
                 </Col>

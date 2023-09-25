@@ -10,7 +10,8 @@
 }
 
 body {
-    background: #83b7f1;
+    background: rgb(14, 112, 223);
+    background: linear-gradient(90deg, rgba(14, 112, 223, 1) 0%, rgba(55, 138, 233, 1) 40%, rgba(131, 183, 241, 1) 100%);
 }
 
 input::-webkit-calendar-picker-indicator {
