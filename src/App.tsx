@@ -43,8 +43,19 @@ export interface ForecastDataProps {
     day5: ForecastDaysProp;
 }
 
+export interface ChartDataProps {
+    time: string[];
+    temp: number[];
+}
+
 const API_KEY: string = "a0708cd146029da8679dfa66033438a1";
 const TIME_API_KEY: string = "6I39QXGUAMVL";
+
+function formatTime(timeString: string) {
+    const [hourString, minute] = timeString.split(":");
+    const hour = +hourString % 24;
+    return (hour % 12 || 12) + ":" + minute + (hour < 12 ? "AM" : "PM");
+}
 
 function getDayOfWeek(dateString: string) {
     const dateParts = dateString.split(" ");
@@ -72,6 +83,10 @@ const App: React.FC = () => {
     const [forecastData, setForecastData] = useState<ForecastDataProps | null>(
         null
     );
+    const [chartData, setChartData] = useState<ChartDataProps>({
+        time: [],
+        temp: []
+    });
 
     const [lat, setLat] = useState("14.6042");
     const [lon, setLon] = useState("120.9822");
@@ -93,17 +108,19 @@ const App: React.FC = () => {
 
     const fetchData = async (lat: string, lon: string, city: string) => {
         try {
+
+            // Weather Data
             const weatherResponse = await axios.get(
                 `https://api.openweathermap.org/data/2.5/weather?q=${city}&lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
             );
             const data = weatherResponse.data;
 
-
+            // Time Data
             const timeResponse = await axios.get(
                 `https://api.timezonedb.com/v2.1/get-time-zone?key=${TIME_API_KEY}&format=json&by=position&lat=${lat}&lng=${lon}`
             );
             const timeData = timeResponse.data.formatted;
-
+            console.log(timeData)
             const dateTime = new Date(timeData);
             const date = dateTime.toLocaleDateString();
             const time = dateTime.toLocaleTimeString();
@@ -129,11 +146,13 @@ const App: React.FC = () => {
             };
             setWeatherData(dataSet);
 
+            // Forecast Data
             const forecastResponse = await axios.get(
                 `https://api.openweathermap.org/data/2.5/forecast?q=${city}&lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
             );
             const fData = forecastResponse.data;
-            
+            console.log(fData);
+
             const forecastDays = [];
             for (let i = 7; i <= 39; i += 8) {
                 const day = fData.list[i];
@@ -159,6 +178,27 @@ const App: React.FC = () => {
                 day5: forecast5,
             };
             setForecastData(tempForecastState);
+
+            // Chart Data
+            const timeArray = [];
+            const tempArray = [];
+
+            for (let i=0; i<40; i++) {
+                const datas = fData.list[i];
+                const day = getDayOfWeek(datas.dt_txt);
+                const currentDay = getDayOfWeek(timeData);
+
+                if (currentDay === day) {
+                    const dt = datas.dt_txt;
+                    const time = dt.split(' ')[1];
+                    const timeData = formatTime(time);
+                    const tempData = Math.round(datas.main.temp);
+
+                    timeArray.push(timeData);
+                    tempArray.push(tempData);
+                }
+            }
+            setChartData({time: timeArray, temp: tempArray});
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -169,7 +209,7 @@ const App: React.FC = () => {
             <Row className="flex flex-col-reverse md:flex-row md:h-full h-fit w-full rounded-3xl bg-[#f5f5f5]">
                 <Col className="w-full px-4">
                     <SearchPlaces onSearchChange={handleChange} />
-                    <Forecast data={forecastData} />
+                    <Forecast data={forecastData} chartData={chartData} />
                 </Col>
 
                 <Col className="w-[100%] md:w-[42rem] h-full bg-[#1a1a52] md:rounded-e-3xl md:rounded-s-none rounded-ss-3xl rounded-se-3xl text-white">

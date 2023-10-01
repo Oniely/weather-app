@@ -16,7 +16,7 @@ export const SearchPlaces: React.FC<SearchPlacesProps> = ({
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ): any {
         return fetch(
-            `${GEO_API_URL}/cities?minPopulation=100000&namePrefix=${inputValue}`,
+            `${GEO_API_URL}/cities?minPopulation=5000&namePrefix=${inputValue}`,
             geoApiOptions
         )
             .then((response) => response.json())
@@ -55,7 +55,7 @@ export const SearchPlaces: React.FC<SearchPlacesProps> = ({
 
                 <AsyncPaginate
                     placeholder="Search for places"
-                    debounceTimeout={600}
+                    debounceTimeout={500}
                     value={search}
                     onChange={handleOnChange}
                     loadOptions={loadOptions}

@@ -1,32 +1,63 @@
 import { ForecastDataProps } from "../App";
+import { ChartDataProps } from "../App";
 import humidityIcon from "./img/water.png";
 import ReactApexChart from "react-apexcharts";
+import { ApexOptions } from "apexcharts";
 
 interface ForecastProps {
     data: ForecastDataProps | null;
+    chartData: ChartDataProps;
 }
 
-export const Forecast: React.FC<ForecastProps> = ({ data }) => {
-    const chartData = {
-        options: {
+type SeriesData = {
+    name: string;
+    data: number[];
+}
+
+export const Forecast: React.FC<ForecastProps> = ({ data, chartData }) => {
+        const data1: SeriesData = {
+            name: "Temperature",
+            data: chartData.temp
+        }
+        
+        const options: ApexOptions = {
             chart: {
-                id: "line",
+                toolbar: {
+                    show: true,
+                    tools: {
+                        download: false,
+                        pan: false,
+                        selection: false,
+                        zoom: true
+                    }
+                },
+
+                id: 'line',
+                background: "#f5f5f5",
             },
             xaxis: {
-                categories: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5"],
+                categories: chartData?.time,
             },
-        },
-        series: [
-            {
-                name: "Temperature",
-                data: [25, 26, 27, 28, 29],
+            series: [data1],
+            colors: ["#60a5fa"],
+            stroke: {
+                width: 6,
+                curve: "smooth",
             },
-        ],
-    };
+            markers: {
+                size: 4,
+                colors: "#f87171",
+                strokeColors: "#f87171",
+                hover: {
+                    size: 6,
+                    sizeOffset: 6,
+                },
+            },
+        };
 
     return (
         <>
-            <div className="w-full px-4 md:px-12 pt-7 flex flex-col items-start justify-start gap-5 mb-6 md:mb-2">
+            <div className="w-full px-4 md:px-12 lg:pt-7 md:pt-4 flex flex-col items-start justify-start gap-5 mb-6 md:mb-0">
                 {data?.day1 &&
                     data?.day2 &&
                     data?.day3 &&
@@ -416,8 +447,20 @@ export const Forecast: React.FC<ForecastProps> = ({ data }) => {
                         )}
                 </div>
             </div>
-            <div className="w-full px-4 md:px-12 text-lg hidden md:block">
-                <ReactApexChart options={chartData.options} series={chartData.series} type="line" height={200} width={700} />
+            <div className="w-full px-4 md:px-12 text-lg lg:mt-3 md:mt-0 hidden md:block">
+                <div className="w-full lg:h-[200px] md:h-[140px]">
+                    {chartData?.time && chartData?.temp ? (
+                        <ReactApexChart
+                            options={options}
+                            series={options.series}
+                            type="line"
+                            width={"100%"}
+                            height={"100%"}
+                        />
+                    ) : (
+                        ""
+                    )}
+                </div>
             </div>
         </>
     );
