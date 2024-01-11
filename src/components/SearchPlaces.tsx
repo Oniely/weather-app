@@ -59,7 +59,7 @@ export const SearchPlaces: React.FC<SearchPlacesProps> = ({
                     value={search}
                     onChange={handleOnChange}
                     loadOptions={loadOptions}
-                    className="w-full lg:w-[22rem] md:w-64 text-lg z-20 shrink-0"
+                    className="w-full lg:w-[22rem] md:w-64 text-lg z-20 shrink-0 mb-4 md:mb-0 cursor-default"
                 />
             </div>
         </>

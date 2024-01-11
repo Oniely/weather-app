@@ -183,6 +183,10 @@ const App: React.FC = () => {
             const timeArray = [];
             const tempArray = [];
 
+
+            // TODO
+            // CHECK IF TIME IS ACCURATE FROM OTHER COUNTRY
+            // AND IF TIME IS CONSISTENT IN CODES
             for (let i=0; i<40; i++) {
                 const datas = fData.list[i];
                 const day = getDayOfWeek(datas.dt_txt);
