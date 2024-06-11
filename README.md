@@ -1,27 +1,23 @@
-# React + TypeScript + Vite
+## Simple Weather Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Introducing our Simple Weather Application, designed to provide accurate and up-to-date weather information for your selected area. This user-friendly app offers both current weather conditions and forecasts to help you plan your day and week.
 
-Currently, two official plugins are available:
+### Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Current Weather Display**: View real-time weather conditions for your selected area.
+- **5-Day Forecast**: Access a detailed weather forecast for the next five days.
+- **Graphical Forecast**: Visualize weather changes throughout the day with an intuitive graph.
+- **Data Source**: Utilizes OpenWeatherAPI for reliable and accurate weather data.
 
-## Expanding the ESLint configuration
+### Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Frontend**: React
+- **API Integration**: OpenWeatherAPI for weather data
 
-- Configure the top-level `parserOptions` property like this:
+### Highlights
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+- **User-Friendly Interface**: Easy-to-navigate design for quick access to weather information.
+- **Detailed Forecasts**: Comprehensive weather details, including temperature, humidity, and more, for the next five days.
+- **Visual Data**: Graphical representation of daily weather changes for better planning.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Stay informed about the weather with our Simple Weather Application, ensuring you are always prepared for the day ahead.
